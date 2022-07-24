@@ -10,7 +10,7 @@ package rpmalloc
 //#cgo darwin,arm64 LDFLAGS: -lrpmalloc -ldl -lc -lm
 //#cgo linux,amd64 LDFLAGS: -Wl,-rpath,${SRCDIR}/lib/linux_amd64 -L${SRCDIR}/lib/linux_amd64
 //#cgo linux,amd64 LDFLAGS: -lrpmalloc -ldl -lc -lm
-#cgo linux,amd64 CFLAGS: -D_GNU_SOURCE
+//#cgo linux,amd64 CFLAGS: -D_GNU_SOURCE
 #include "rpmalloc.h"
 */
 import "C"

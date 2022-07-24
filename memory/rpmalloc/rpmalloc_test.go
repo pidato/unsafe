@@ -16,7 +16,7 @@ func TestCall(t *testing.T) {
 
 }
 
-func TestAlloc(t *testing.T) {
+func TestGlobalAlloc(t *testing.T) {
 
 	Malloc(128)
 	var wg = &sync.WaitGroup{}
@@ -280,7 +280,7 @@ func randomRange(min, max int) int {
 func BenchmarkAllocator_Alloc(b *testing.B) {
 	var (
 		//min, max    = 36, 8092
-		min, max    = 16, 512
+		min, max    = 16, 2048
 		runTLSF     = true
 		showGCStats = false
 	)
@@ -300,7 +300,8 @@ func BenchmarkAllocator_Alloc(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		size := randomRangeSizes[i%len(randomRangeSizes)]
 		b.SetBytes(int64(size))
-		Free(Malloc(size))
+		p := Malloc(size)
+		Free(p)
 	}
 
 	if runTLSF {
@@ -427,7 +428,7 @@ func BenchmarkAllocator_Alloc(b *testing.B) {
 		b.StopTimer()
 		var after runtime.MemStats
 		runtime.ReadMemStats(&after)
-		doAfter(before, after)
+		//doAfter(before, after)
 	})
 
 	b.Run("Go GC pool", func(b *testing.B) {

@@ -1,9 +1,4 @@
 //go:build !tinygo && !wasm && !wasi && !tinygo.wasm && (darwin || linux)
-// +build !tinygo
-// +build !wasm
-// +build !wasi
-// +build !tinygo.wasm
-// +build darwin linux
 
 package tlsf
 

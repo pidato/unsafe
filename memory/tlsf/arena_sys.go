@@ -66,7 +66,7 @@ func (a *sysArena) Free() {
 	allocatorsMu.Unlock()
 }
 
-//go:linkname sysMemStat runtime.sysMemStat
+////go:linkname sysMemStat runtime.sysMemStat
 type sysMemStat uint64
 
 ////go:linkname persistentalloc runtime.persistentalloc
